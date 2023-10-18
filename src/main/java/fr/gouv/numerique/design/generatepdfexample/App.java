@@ -9,6 +9,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class App
         PdfDocument pdf = new PdfDocument(writer);
 
         // Initialize document
-        Document document = new Document(pdf);
+        Document d = new Document(pdf);
 
         // Create a test form data object
         FormData testFormData = new FormData();
@@ -47,28 +48,43 @@ public class App
 
         // Creating an Image object
         Image image = new Image(data);
+		image.scaleAbsolute(188, 37);
 
         // Adding image to the document
-        document.add(image);
+        d.add(image);
 
         // Add paragraphs to the document
-        Paragraph p = new Paragraph("Récapitulatif d’inscription à la formation « Créer un PDF (vraiment) accessible »");
-        document.add(p.setFontSize(28));
-        document.add(new Paragraph("Prénom : " + testFormData.firstName));
-        document.add(new Paragraph("Nom : " + testFormData.lastName));
-        document.add(new Paragraph("E-mail : " + testFormData.email));
-        document.add(new Paragraph("Ville : " + testFormData.city));
-        document.add(new Paragraph("Fonction : " + testFormData.function));
-        document.add(new Paragraph("Status : " + testFormData.status));
-        document.add(new Paragraph("Organisme : " + testFormData.organisation));
+        Paragraph p = new Paragraph();
+		p.add(new Text("Récapitulatif d’inscription à la formation "));
+		p.add(new Text("« " + testFormData.courseTitle + " »").setBold());
+        d.add(p.setFontSize(28).setMarginBottom(10f));
+
+		p = new Paragraph(testFormData.courseDate);
+        d.add(p.setFontSize(18).setMarginBottom(20f));
+
+        p = new Paragraph("Formulaire d’inscription envoyé : " + testFormData.getFormatedDateAndTime() + ".");
+        p.setMarginBottom(35f).setItalic();
+        d.add(p);
+
+        this.addKeyValueParagraph(d, p, "Prénom", testFormData.firstName);
+        this.addKeyValueParagraph(d, p, "Nom", testFormData.lastName);
+        this.addKeyValueParagraph(d, p, "E-mail", testFormData.email);
+        this.addKeyValueParagraph(d, p, "Ville", testFormData.city);
+        this.addKeyValueParagraph(d, p, "Status", testFormData.status);
+        this.addKeyValueParagraph(d, p, "Organisme", testFormData.organisation);
         if (!testFormData.observatoryProcedure.isEmpty()) {
-            document.add(new Paragraph("Démarche de l'Observatoire : " + testFormData.observatoryProcedure));
+            this.addKeyValueParagraph(d, p, "Démarche de l'Observatoire", testFormData.observatoryProcedure);
         }
-        document.add(new Paragraph("Niveau d’expertise : " + testFormData.level));
-        document.add(new Paragraph("Motivations pour suivre cette formation : " + testFormData.motivations));
-        document.add(new Paragraph("Formulaire d’inscription envoyé : " + testFormData.getFormatedDateAndTime()));
+        this.addKeyValueParagraph(d, p, "Niveau d’expertise", testFormData.level);
+        this.addKeyValueParagraph(d, p, "Motivations pour suivre cette formation", testFormData.motivations);
 
         // Close document
-        document.close();
+        d.close();
+    }
+
+    private void addKeyValueParagraph(Document d, Paragraph p, String key, String val) {
+        p = new Paragraph(new Text(key + " :\n"));
+        p.add(new Text(val).setBold());
+        d.add(p);
     }
 }

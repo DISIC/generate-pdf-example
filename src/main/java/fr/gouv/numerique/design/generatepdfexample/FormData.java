@@ -6,6 +6,8 @@ import java.util.Locale;
 
 class FormData
 {
+    public String courseTitle;
+    public String courseDate;
     public String firstName;
     public String lastName;
     public String email;
@@ -19,6 +21,8 @@ class FormData
     public Date registrationDate;
 
     public void fillTestData() {
+        this.courseTitle = "Créer un PDF (vraiment) accessible";
+        this.courseDate = "Jeudi 14 décembre 2023 de 9h30 à 12h30";
         this.firstName = "Jean";
         this.lastName = "Dupond";
         this.email = "jean.dupond@test.com";
