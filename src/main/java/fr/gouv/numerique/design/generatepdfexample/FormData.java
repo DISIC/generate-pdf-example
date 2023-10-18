@@ -29,10 +29,10 @@ class FormData
         this.city = "Marseille";
         this.function = "Développeur";
         this.status = "Agent public de l'État";
-        this.organisation = "DGFIP";
+        this.organisation = "DGFiP";
         this.observatoryProcedure = "Achat de timbre fiscal";
         this.level = "Intermédiaire";
-        this.motivations = "Une refonte du service est prévue cette année, et nous aurons des PDFs à générer !";
+        this.motivations = "Une refonte du service est prévue cette année et nous aurons des PDFs à générer !";
         this.registrationDate = new Date();
     }
 
