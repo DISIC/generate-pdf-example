@@ -1,19 +1,22 @@
 package fr.gouv.numerique.design.generatepdfexample;
 
+import fr.gouv.numerique.design.generatepdfexample.FormData;
+
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+
 import java.io.File;
 import java.io.IOException;
 
 /**
- * Hello world!
+ * Main App
  *
  */
 public class App
 {
-    public static final String DEST = "./hello_world.pdf";
+    public static final String DEST = "./formation_creer_un_pdf_accessible__recapitulatif.pdf";
 
     public static void main(String args[]) throws IOException {
         File file = new File(DEST);
@@ -22,19 +25,37 @@ public class App
     }
 
     public void createPdf(String dest) throws IOException {
-        //Initialize PDF writer
+        // Initialize PDF writer
         PdfWriter writer = new PdfWriter(dest);
 
-        //Initialize PDF document
+        // Initialize PDF document
         PdfDocument pdf = new PdfDocument(writer);
 
         // Initialize document
         Document document = new Document(pdf);
 
-        //Add paragraph to the document
-        document.add(new Paragraph("Hello World!"));
+        // Create a test form data object
+        FormData testFormData = new FormData();
+        testFormData.fillTestData();
 
-        //Close document
+        // Add paragraphs to the document
+		Paragraph p = new Paragraph("Récapitulatif d’inscription à la formation « Créer un PDF (vraiment) accessible »");
+        document.add(p.setFontSize(28));
+        document.add(new Paragraph("Prénom : " + testFormData.firstName));
+        document.add(new Paragraph("Nom : " + testFormData.lastName));
+        document.add(new Paragraph("E-mail : " + testFormData.email));
+        document.add(new Paragraph("Ville : " + testFormData.city));
+        document.add(new Paragraph("Fonction : " + testFormData.function));
+        document.add(new Paragraph("Status : " + testFormData.status));
+        document.add(new Paragraph("Organisme : " + testFormData.organisation));
+        if (!testFormData.observatoryProcedure.isEmpty()) {
+            document.add(new Paragraph("Démarche de l'Observatoire : " + testFormData.observatoryProcedure));
+        }
+        document.add(new Paragraph("Niveau d’expertise : " + testFormData.level));
+        document.add(new Paragraph("Motivations pour suivre cette formation : " + testFormData.motivations));
+        document.add(new Paragraph("Formulaire d’inscription envoyé : " + testFormData.getFormatedDateAndTime()));
+
+        // Close document
         document.close();
     }
 }
