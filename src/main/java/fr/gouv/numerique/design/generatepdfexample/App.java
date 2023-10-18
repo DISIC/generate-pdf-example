@@ -2,9 +2,12 @@ package fr.gouv.numerique.design.generatepdfexample;
 
 import fr.gouv.numerique.design.generatepdfexample.FormData;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 
 import java.io.File;
@@ -38,8 +41,18 @@ public class App
         FormData testFormData = new FormData();
         testFormData.fillTestData();
 
+        // Creating an ImageData object
+        String imFile = "src/main/resources/img/logo-designgouv.png";
+        ImageData data = ImageDataFactory.create(imFile);
+
+        // Creating an Image object
+        Image image = new Image(data);
+
+        // Adding image to the document
+        document.add(image);
+
         // Add paragraphs to the document
-		Paragraph p = new Paragraph("Récapitulatif d’inscription à la formation « Créer un PDF (vraiment) accessible »");
+        Paragraph p = new Paragraph("Récapitulatif d’inscription à la formation « Créer un PDF (vraiment) accessible »");
         document.add(p.setFontSize(28));
         document.add(new Paragraph("Prénom : " + testFormData.firstName));
         document.add(new Paragraph("Nom : " + testFormData.lastName));
