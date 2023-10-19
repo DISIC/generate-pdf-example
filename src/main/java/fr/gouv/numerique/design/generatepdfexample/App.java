@@ -10,6 +10,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
+import com.itextpdf.layout.properties.TextAlignment;
 
 import java.io.File;
 import java.io.IOException;
@@ -50,22 +51,28 @@ public class App
         Image image = new Image(data);
 		image.scaleAbsolute(188, 37);
 
+		// A Paragraph object that will be used for all paragraphs coming next
+		Paragraph p;
+
         // Adding image to the document
         d.add(image);
 
-        // Add paragraphs to the document
-        Paragraph p = new Paragraph();
+        // Add title as paragraph
+        p = new Paragraph();
 		p.add(new Text("Récapitulatif d’inscription à la formation "));
-		p.add(new Text("« " + testFormData.courseTitle + " »").setBold());
+		p.add(new Text(testFormData.courseTitle).setBold());
         d.add(p.setFontSize(28).setMarginBottom(10f));
 
+        // Add course date as paragraph
 		p = new Paragraph(testFormData.courseDate);
         d.add(p.setFontSize(18).setMarginBottom(20f));
 
+		// Add form submission date as paragraph
         p = new Paragraph("Formulaire d’inscription envoyé : " + testFormData.getFormatedDateAndTime() + ".");
         p.setMarginBottom(35f).setItalic();
         d.add(p);
 
+        // Add form key/values paragraphs
         this.addKeyValueParagraph(d, p, "Prénom", testFormData.firstName);
         this.addKeyValueParagraph(d, p, "Nom", testFormData.lastName);
         this.addKeyValueParagraph(d, p, "E-mail", testFormData.email);
@@ -77,6 +84,16 @@ public class App
         }
         this.addKeyValueParagraph(d, p, "Niveau d’expertise", testFormData.level);
         this.addKeyValueParagraph(d, p, "Motivations pour suivre cette formation", testFormData.motivations);
+
+		// Add quote + book + author as 2 paragraphs
+        p = new Paragraph("« " + testFormData.quoteText + " »");
+        p.setItalic().setMarginTop(40f).setTextAlignment(TextAlignment.CENTER);
+		d.add(p);
+		p = new Paragraph();
+		p.add(new Text(" — " + testFormData.quoteBook).setItalic());
+		p.add(new Text(" de " + testFormData.quoteAuthor));
+		p.setTextAlignment(TextAlignment.CENTER);
+		d.add(p);
 
         // Close document
         d.close();

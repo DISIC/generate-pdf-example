@@ -8,6 +8,9 @@ class FormData
 {
     public String courseTitle;
     public String courseDate;
+    public String quoteText;
+    public String quoteBook;
+    public String quoteAuthor;
     public String firstName;
     public String lastName;
     public String email;
@@ -23,6 +26,9 @@ class FormData
     public void fillTestData() {
         this.courseTitle = "Créer un PDF (vraiment) accessible";
         this.courseDate = "Jeudi 14 décembre 2023 de 9h30 à 12h30";
+		this.quoteText = "PDF is used wherever the exact presentation of the content is important […]";
+		this.quoteBook = "PDF Explained";
+		this.quoteAuthor = "John Whitington";
         this.firstName = "Jean";
         this.lastName = "Dupond";
         this.email = "jean.dupond@test.com";
