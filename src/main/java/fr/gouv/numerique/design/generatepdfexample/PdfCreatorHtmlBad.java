@@ -7,7 +7,6 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -15,38 +14,37 @@ import java.io.IOException;
  * PdfCreatorHtmlBad
  *
  */
-public class PdfCreatorHtmlBad extends PdfCreator
-{
-    public PdfCreatorHtmlBad() throws IOException {
-			super();
-		}
+public class PdfCreatorHtmlBad extends PdfCreator {
 
-    protected void createPdf() throws IOException {
+  public PdfCreatorHtmlBad() throws IOException {
+    super();
+  }
 
-				// Ex: "./formation_creer_un_pdf_accessible_recapitulatif__HTML_BAD.pdf"
-        String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__HTML_BAD." + DEST_EXTENSTION;
-        Document d = super.createDocument(dest);
+  protected void createPdf() throws IOException {
+    // Ex: "./formation_creer_un_pdf_accessible_recapitulatif__HTML_BAD.pdf"
+    String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__HTML_BAD." + DEST_EXTENSTION;
+    Document d = super.createDocument(dest);
 
-        // Create a test form data object
-        FormData data = this.testFormdata;
+    // Create a test form data object
+    FormData data = this.testFormdata;
 
-        // Creating an ImageData object
-        String imgPath = "src/main/resources/img/logo-designgouv.png";
-        ImageData imgData = ImageDataFactory.create(imgPath);
+    // Creating an ImageData object
+    String imgPath = "src/main/resources/img/logo-designgouv.png";
+    ImageData imgData = ImageDataFactory.create(imgPath);
 
-        // Creating an Image object
-        Image image = new Image(imgData);
-        image.scaleAbsolute(188, 37);
+    // Creating an Image object
+    Image image = new Image(imgData);
+    image.scaleAbsolute(188, 37);
 
-        // Adding image to the document
-        d.add(image);
+    // Adding image to the document
+    d.add(image);
 
-        // Temporary
-        Paragraph p;
-        p = new Paragraph(dest);
-        d.add(p);
+    // Temporary
+    Paragraph p;
+    p = new Paragraph(dest);
+    d.add(p);
 
-        // Close document
-        d.close();
-    }
+    // Close document
+    d.close();
+  }
 }

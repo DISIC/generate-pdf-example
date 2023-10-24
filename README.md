@@ -12,6 +12,7 @@ This project demonstrates how to generate accessible PDF documents with iText 7
 ## 🛠️ Install Dependencies
 
 ```bash
+npm install
 mvn install
 ```
 
