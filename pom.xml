@@ -17,6 +17,7 @@
 		<maven.compiler.release>11</maven.compiler.release>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <itext.pdfhtml.version>5.0.1</itext.pdfhtml.version>
   	<itext.version>8.0.1</itext.version>
   </properties>
 
@@ -29,10 +30,15 @@
     </dependency>
 		<!-- add all iText modules -->
     <dependency>
-        <groupId>com.itextpdf</groupId>
-        <artifactId>itext-core</artifactId>
-        <version>${itext.version}</version>
-        <type>pom</type>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>itext-core</artifactId>
+      <version>${itext.version}</version>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>com.itextpdf</groupId>
+      <artifactId>html2pdf</artifactId>
+      <version>${itext.pdfhtml.version}</version>
     </dependency>
   </dependencies>
 
