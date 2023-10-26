@@ -13,31 +13,11 @@ import java.io.IOException;
  */
 public class PdfCreator {
 
-  public static final String DEST_PATH = "./";
+  public static final String DEST_PATH = "./dist/";
   public static final String DEST_BASE_FILE_NAME = "formation_creer_un_pdf_accessible_recapitulatif";
   public static final String DEST_EXTENSTION = "pdf";
 
   protected FormData testFormdata;
 
-  public PdfCreator() throws IOException {
-    this.testFormdata = new FormData();
-    this.testFormdata.fillTestData();
-
-    this.createPdf();
-  }
-
-  protected void createPdf() throws IOException {}
-
-  protected Document createDocument(String dest) throws IOException {
-    // Initialize PDF writer
-    PdfWriter writer = new PdfWriter(dest);
-
-    // Initialize PDF document
-    PdfDocument pdf = new PdfDocument(writer);
-
-    // Initialize document
-    Document d = new Document(pdf);
-
-    return d;
-  }
+  public PdfCreator() throws IOException {}
 }

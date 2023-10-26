@@ -6,13 +6,24 @@ body {
 }
 
 blockquote {
-  text-align: center;
   margin: 0;
-  padding: 2rem;
+  padding: 1.69rem 1.69rem 1.69rem 2.459rem;
+  background: #f6f6f6;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  border-left: 0.768rem solid #fceeac;
+  position: relative;
+}
+
+blockquote p::before {
+  content: "« ";
+}
+
+blockquote p::after {
+  content: " »";
 }
 
 p {
-  margin: 0 0 1rem;
+  margin: 0 0 1.3rem;
 }
 
 dt:after {
@@ -31,7 +42,7 @@ h1 {
 }
 
 .stack > * + * {
-  margin-top: 1.3rem;
+  margin-top: 1rem;
 }
 
 .subtitle {

@@ -9,6 +9,7 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.properties.TextAlignment;
+import fr.gouv.numerique.design.generatepdfexample.FormData;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,19 +17,16 @@ import java.io.IOException;
  * PdfCreatorManualBad
  *
  */
-public class PdfCreatorManualBad extends PdfCreator {
+public class PdfCreatorManualBad extends PdfCreatorManual {
 
   public PdfCreatorManualBad() throws IOException {
     super();
   }
 
-  protected void createPdf() throws IOException {
-    // Ex: "./formation_creer_un_pdf_accessible_recapitulatif__MANUAL_BAD.pdf"
+  protected void createPdf(FormData data) throws IOException {
+    // Ex: "./dist/formation_creer_un_pdf_accessible_recapitulatif__MANUAL_BAD.pdf"
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__MANUAL_BAD." + DEST_EXTENSTION;
     Document d = super.createDocument(dest);
-
-    // Create a test form data object
-    FormData data = this.testFormdata;
 
     // Creating an ImageData object
     String imgPath = "src/main/resources/img/logo-designgouv.png";
@@ -51,11 +49,17 @@ public class PdfCreatorManualBad extends PdfCreator {
     d.add(p.setFontSize(28).setMarginBottom(10f));
 
     // Add course date as paragraph
-    p = new Paragraph(data.courseDate);
+    p =
+      new Paragraph(
+        "Le " + data.getFormattedCourseStartDate() + " de " + data.getFormattedCourseStartTime() + " à " + data.getFormattedCourseEndTime()
+      );
     d.add(p.setFontSize(18).setMarginBottom(20f));
 
     // Add form submission date as paragraph
-    p = new Paragraph("Formulaire d’inscription envoyé : " + data.getFormatedDateAndTime() + ".");
+    p =
+      new Paragraph(
+        "Formulaire d’inscription envoyé : le " + data.getFormattedRegistrationDate() + " à " + data.getFormattedRegistrationTime() + "."
+      );
     p.setMarginBottom(35f).setItalic();
     d.add(p);
 
@@ -84,11 +88,5 @@ public class PdfCreatorManualBad extends PdfCreator {
 
     // Close document
     d.close();
-  }
-
-  private void addKeyValueParagraph(Document d, Paragraph p, String key, String val) {
-    p = new Paragraph(new Text(key + " :\n"));
-    p.add(new Text(val).setBold());
-    d.add(p);
   }
 }

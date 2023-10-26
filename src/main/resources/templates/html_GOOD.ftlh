@@ -4,76 +4,81 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Récapitulatif d’inscription à la formation "Créer un PDF (vraiment)
-      accessible"
+      Récapitulatif d’inscription à la formation "${testFormdata.courseTitle}"
     </title>
-    <link rel="stylesheet" type="text/css" href="/html/style_GOOD.css" />
+    <link rel="stylesheet" type="text/css" href="css/style_GOOD.css" />
   </head>
   <body>
     <header>
       <img
-        src="/img/logo-designgouv.png"
+        src="img/logo-designgouv.png"
         width="250.6"
         height="49.3"
         alt="DesignGouv"
       />
       <h1>
         Récapitulatif d’inscription à la formation<br />
-        <strong>Créer un PDF (vraiment) accessible</strong>
+        <strong>${testFormdata.courseTitle}</strong>
       </h1>
-      <p class="subtitle">Jeudi 14 décembre 2023 de 9h30 à 12h30</p>
+      <p class="subtitle">
+        Le
+        <time datetime="${testFormdata.courseDate}"
+          >${testFormdata.formattedCourseStartDate}</time
+        >
+        de
+        <time datetime="${testFormdata.courseStartTime}"
+          >${testFormdata.formattedCourseStartTime}</time
+        >
+        à
+        <time datetime="${testFormdata.courseEndTime}"
+          >${testFormdata.formattedCourseEndTime}</time
+        >
+      </p>
     </header>
     <main>
-      <p style="sent-date">
-        <em
-          >Formulaire d’inscription envoyé : le
-          <time datetime="2023-10-24">24 octobre 2023</time> à
-          <time datetime="13:09">13:09</time>.</em
-        >
+      <p class="sent-date">
+        Formulaire d’inscription envoyé :
+        <time datetime="${testFormdata.registrationDateTime}"
+          >le ${testFormdata.formattedRegistrationDate} à
+          ${testFormdata.formattedRegistrationTime}</time
+        >.
       </p>
       <dl class="stack">
         <div>
           <dt>Prénom</dt>
-          <dd>Jean</dd>
+          <dd>${testFormdata.firstName}</dd>
         </div>
         <div>
           <dt>Nom</dt>
-          <dd>Dupond</dd>
-        </div>
-        <div>
-          <dt>Nom</dt>
-          <dd>Dupond</dd>
+          <dd>${testFormdata.lastName}</dd>
         </div>
         <div>
           <dt>E-mail</dt>
-          <dd>jean.dupond@test.com</dd>
+          <dd>${testFormdata.email}</dd>
         </div>
         <div>
           <dt>Ville</dt>
-          <dd>Marseille</dd>
+          <dd>${testFormdata.city}</dd>
         </div>
         <div>
           <dt>Status</dt>
-          <dd>Agent public de l'État</dd>
+          <dd>${testFormdata.status}</dd>
         </div>
         <div>
           <dt>Organisme</dt>
-          <dd>DGFiP</dd>
+          <dd>${testFormdata.organisation}</dd>
         </div>
         <div>
           <dt>Démarche de l'Observatoire</dt>
-          <dd>Achat de timbre fiscal</dd>
+          <dd>${testFormdata.observatoryProcedure}</dd>
         </div>
         <div>
           <dt>Niveau d’expertise</dt>
-          <dd>Intermédiaire</dd>
+          <dd>${testFormdata.level}</dd>
         </div>
         <div>
           <dt>Motivations pour suivre cette formation</dt>
-          <dd>
-            Une refonte du service est prévue cette année et nous aurons des
-            PDFs à générer !
-          </dd>
+          <dd>${testFormdata.motivations}</dd>
         </div>
       </dl>
       <blockquote

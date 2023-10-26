@@ -7,6 +7,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
+import fr.gouv.numerique.design.generatepdfexample.FormData;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,19 +15,16 @@ import java.io.IOException;
  * PdfCreatorManualGood
  *
  */
-public class PdfCreatorManualGood extends PdfCreator {
+public class PdfCreatorManualGood extends PdfCreatorManual {
 
   public PdfCreatorManualGood() throws IOException {
     super();
   }
 
-  protected void createPdf() throws IOException {
-    // Ex: "./formation_creer_un_pdf_accessible_recapitulatif__MANUAL_GOOD.pdf"
+  protected void createPdf(FormData data) throws IOException {
+    // Ex: "./dist/formation_creer_un_pdf_accessible_recapitulatif__MANUAL_GOOD.pdf"
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__MANUAL_GOOD." + DEST_EXTENSTION;
     Document d = super.createDocument(dest);
-
-    // Create a test form data object
-    FormData data = this.testFormdata;
 
     // Creating an ImageData object
     String imgPath = "src/main/resources/img/logo-designgouv.png";
