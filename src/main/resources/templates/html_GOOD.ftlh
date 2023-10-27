@@ -35,7 +35,7 @@
         >
       </p>
     </header>
-    <main>
+    <main class="stack-xl">
       <p class="sent-date">
         Formulaire d’inscription envoyé :
         <time datetime="${testFormdata.registrationDateTime}"

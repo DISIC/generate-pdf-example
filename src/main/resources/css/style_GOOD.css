@@ -1,13 +1,16 @@
 body {
   font-family: Helvetica;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 1.4;
   padding: 1rem;
+}
+p {
+  margin: 0;
 }
 
 blockquote {
   margin: 0;
-  padding: 1.69rem 1.69rem 1.69rem 2.459rem;
+  padding: 1.3rem 1.3rem 1.3rem 2.069rem;
   background: #f6f6f6;
   quotes: "\201C" "\201D" "\2018" "\2019";
   border-left: 0.768rem solid #fceeac;
@@ -22,8 +25,8 @@ blockquote p::after {
   content: " »";
 }
 
-p {
-  margin: 0 0 1.3rem;
+blockquote p {
+  margin-bottom: 1rem;
 }
 
 dt:after {
@@ -45,11 +48,16 @@ h1 {
   margin-top: 1rem;
 }
 
+.stack-xl > * + * {
+  margin-top: 2.197rem;
+}
+
 .subtitle {
   font-size: 1.69rem;
-  margin: 2rem 0;
+  margin: 1.3rem 0;
 }
 
 .sent-date {
-  margin: 3rem 0;
+  margin: 1.69rem 0;
+  font-style: italic;
 }
