@@ -6,6 +6,7 @@
     <title>
       Récapitulatif d’inscription à la formation "${testFormdata.courseTitle}"
     </title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/style_GOOD.css" />
   </head>
   <body>
