@@ -83,12 +83,13 @@
       </dl>
       <blockquote
         cite="https://www.oreilly.com/library/view/pdf-explained/9781449321581/ch01.html"
+        lang="en"
       >
         <p>
           PDF is used wherever the exact presentation of the content is
           important [...]
         </p>
-        <footer lang="en">— John Whitington, <cite>PDF Explained</cite></footer>
+        <footer>— John Whitington, <cite>PDF Explained</cite></footer>
       </blockquote>
     </main>
   </body>
