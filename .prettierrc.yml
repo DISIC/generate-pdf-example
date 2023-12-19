@@ -12,6 +12,11 @@ overrides:
   - files:
       - "*.xml"
     options:
-      xmlWhitespaceSensitivity: ignore
+      xmlWhitespaceSensitivity: "strict"
       tabWidth: 2
       useTabs: false
+  - files:
+      - "*.ftlh"
+    options:
+      parser: "html"
+      xmlWhitespaceSensitivity: "strict"
