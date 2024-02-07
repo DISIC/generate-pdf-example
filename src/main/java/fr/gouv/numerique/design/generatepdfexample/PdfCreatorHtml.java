@@ -17,14 +17,6 @@ import java.util.*;
  */
 public class PdfCreatorHtml extends PdfCreator {
 
-  public static final String FONT_LIGHT = "src/main/resources/fonts/Marianne-Light.woff2";
-  public static final String FONT_LIGHT_ITALIC = "src/main/resources/fonts/Marianne-Light_Italic.woff2";
-  public static final String FONT_REGULAR = "src/main/resources/fonts/Marianne-Regular.woff2";
-  public static final String FONT_REGULAR_ITALIC = "src/main/resources/fonts/Marianne-Regular_Italic.woff2";
-  public static final String FONT_MEDIUM = "src/main/resources/fonts/Marianne-Medium.woff2";
-  public static final String FONT_MEDIUM_ITALIC = "src/main/resources/fonts/Marianne-Medium_Italic.woff2";
-  public static final String FONT_BOLD = "src/main/resources/fonts/Marianne-Bold.woff2";
-
   public PdfCreatorHtml() throws IOException {
     super();
   }
@@ -54,21 +46,10 @@ public class PdfCreatorHtml extends PdfCreator {
 
     // Destination. Ex: "./dist/formation_creer_un_pdf_accessible_recapitulatif__HTML_BAD.pdf"
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__HTML_" + suffix + "." + DEST_EXTENSTION;
-    fout = new FileOutputStream(dest);
 
-    // ACCESSIBILITY
-    WriterProperties writerProperties = new WriterProperties();
-    // writerProperties.addXmpMetadata();
-    writerProperties.addUAXmpMetadata().setPdfVersion(PdfVersion.PDF_2_0);
+    PdfDocument pdfDoc = this.createTaggedPDFDocument(dest);
 
-    PdfWriter pdfWriter = new PdfWriter(fout, writerProperties);
-    PdfDocument pdfDoc = new PdfDocument(pdfWriter);
-    pdfDoc.getCatalog().setLang(new PdfString("fr-FR"));
-
-    pdfDoc.setTagged();
-    pdfDoc.getCatalog().setViewerPreferences(new PdfViewerPreferences().setDisplayDocTitle(true));
-
-    // Embed font
+    // a11y: embed font
     ConverterProperties props = new ConverterProperties();
     FontProvider fontProvider = new DefaultFontProvider(true, false, false);
     fontProvider.addFont(FontProgramFactory.createFont(FONT_LIGHT), "UTF-8");

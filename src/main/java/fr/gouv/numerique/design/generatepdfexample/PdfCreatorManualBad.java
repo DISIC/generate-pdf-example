@@ -26,7 +26,7 @@ public class PdfCreatorManualBad extends PdfCreatorManual {
   protected void createPdf(FormData data) throws IOException {
     // Ex: "./dist/formation_creer_un_pdf_accessible_recapitulatif__MANUAL_BAD.pdf"
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__MANUAL_BAD." + DEST_EXTENSTION;
-    Document d = super.createDocument(dest);
+    Document d = super.createDocument(dest, data);
 
     // Creating an ImageData object
     String imgPath = "src/main/resources/img/logo-designgouv.png";
