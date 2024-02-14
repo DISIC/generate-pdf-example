@@ -8,9 +8,7 @@ import com.itextpdf.kernel.font.PdfFontFactory.EmbeddingStrategy;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfDocumentInfo;
 import com.itextpdf.kernel.pdf.PdfOutline;
-import com.itextpdf.kernel.pdf.PdfString;
 import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.navigation.PdfDestination;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
@@ -70,24 +68,5 @@ public class PdfCreatorManual extends PdfCreator {
     documentInfo.setTitle("Récapitulatif d’inscription à la formation \"" + data.courseTitle + "\"");
 
     return d;
-  }
-
-  public Paragraph createHeading(String title, String hLevel) {
-    Paragraph p = new Paragraph(title);
-    p.setFont(this.fontBold).setFontSize(20f).setMarginTop(20f).setMarginBottom(10f).setMultipliedLeading(1);
-    p.getAccessibilityProperties().setRole(hLevel);
-    return p;
-  }
-
-  public PdfOutline createOutline(PdfOutline outline, PdfDocument pdf, String title, String name) {
-    if (outline == null) {
-      outline = pdf.getOutlines(false);
-      outline = outline.addOutline(title);
-      outline.addDestination(PdfDestination.makeDestination(new PdfString(name)));
-      return outline;
-    }
-    PdfOutline kid = outline.addOutline(title);
-    kid.addDestination(PdfDestination.makeDestination(new PdfString(name)));
-    return outline;
   }
 }

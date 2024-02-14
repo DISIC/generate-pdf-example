@@ -3,7 +3,11 @@ package fr.gouv.numerique.design.generatepdfexample;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfName;
+import com.itextpdf.kernel.pdf.PdfOutline;
+import com.itextpdf.kernel.pdf.PdfString;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.navigation.PdfDestination;
 import com.itextpdf.kernel.pdf.tagging.StandardRoles;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
@@ -71,6 +75,25 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     //TODO quote en english!
 
     d.close();
+  }
+
+  public Paragraph createHeading(String title, String hLevel) {
+    Paragraph p = new Paragraph(title);
+    p.setFont(this.fontBold).setFontSize(20f).setMarginTop(20f).setMarginBottom(10f).setMultipliedLeading(1);
+    p.getAccessibilityProperties().setRole(hLevel);
+    return p;
+  }
+
+  public PdfOutline createOutline(PdfOutline outline, PdfDocument pdf, String title, String name) {
+    if (outline == null) {
+      outline = pdf.getOutlines(false);
+      outline = outline.addOutline(title);
+      outline.addDestination(PdfDestination.makeDestination(new PdfString(name)));
+      return outline;
+    }
+    PdfOutline kid = outline.addOutline(title);
+    kid.addDestination(PdfDestination.makeDestination(new PdfString(name)));
+    return outline;
   }
 
   protected void addKeyValueListItem(List list, String key, String val) {
