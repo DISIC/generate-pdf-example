@@ -45,22 +45,13 @@ public class PdfCreatorManual extends PdfCreator {
     String encoding = PdfEncodings.IDENTITY_H;
     EmbeddingStrategy embed = EmbeddingStrategy.FORCE_EMBEDDED;
 
-    FontProvider fontProvider = new FontProvider("Marianne");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_LIGHT), "UTF-8");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_LIGHT_ITALIC), "UTF-8");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_REGULAR), "UTF-8");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_REGULAR_ITALIC), "UTF-8");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_MEDIUM), "UTF-8");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_MEDIUM_ITALIC), "UTF-8");
-    fontProvider.addFont(FontProgramFactory.createFont(FONT_BOLD), "UTF-8");
-
-    this.fontLight = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_LIGHT), encoding, embed);
-    this.fontLightItalic = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_LIGHT_ITALIC), encoding, embed);
-    this.fontRegular = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_REGULAR), encoding, embed);
-    this.fontRegularItalic = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_REGULAR_ITALIC), encoding, embed);
-    this.fontMedium = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_MEDIUM), encoding, embed);
-    this.fontMediumItalic = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_MEDIUM_ITALIC), encoding, embed);
-    this.fontBold = PdfFontFactory.createFont(FontProgramFactory.createFont(FONT_BOLD), encoding, embed);
+    this.fontLight = PdfFontFactory.createFont(FONT_LIGHT, encoding, embed);
+    this.fontLightItalic = PdfFontFactory.createFont(FONT_LIGHT_ITALIC, encoding, embed);
+    this.fontRegular = PdfFontFactory.createFont(FONT_REGULAR, encoding, embed);
+    this.fontRegularItalic = PdfFontFactory.createFont(FONT_REGULAR_ITALIC, encoding, embed);
+    this.fontMedium = PdfFontFactory.createFont(FONT_MEDIUM, encoding, embed);
+    this.fontMediumItalic = PdfFontFactory.createFont(FONT_MEDIUM_ITALIC, encoding, embed);
+    this.fontBold = PdfFontFactory.createFont(FONT_BOLD, encoding, embed);
 
     d.setFont(this.fontRegular);
 
