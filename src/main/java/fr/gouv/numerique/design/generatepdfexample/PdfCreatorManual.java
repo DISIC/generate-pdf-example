@@ -44,7 +44,7 @@ public class PdfCreatorManual extends PdfCreator {
 
     // Initialize document
     Document d = new Document(pdfDoc);
-    String encoding = PdfEncodings.WINANSI;
+    String encoding = PdfEncodings.IDENTITY_H;
     EmbeddingStrategy embed = EmbeddingStrategy.FORCE_EMBEDDED;
 
     FontProvider fontProvider = new FontProvider("Marianne");
