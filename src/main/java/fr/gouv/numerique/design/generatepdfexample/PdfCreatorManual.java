@@ -72,6 +72,13 @@ public class PdfCreatorManual extends PdfCreator {
     return d;
   }
 
+  public Paragraph createHeading(String title, String hLevel) {
+    Paragraph p = new Paragraph(title);
+    p.setFont(this.fontBold).setFontSize(20f).setMarginTop(20f).setMarginBottom(10f).setMultipliedLeading(1);
+    p.getAccessibilityProperties().setRole(hLevel);
+    return p;
+  }
+
   public PdfOutline createOutline(PdfOutline outline, PdfDocument pdf, String title, String name) {
     if (outline == null) {
       outline = pdf.getOutlines(false);

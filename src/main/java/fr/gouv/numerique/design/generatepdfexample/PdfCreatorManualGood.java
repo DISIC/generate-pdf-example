@@ -44,6 +44,8 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     // Adding image to the document
     d.add(image);
 
+    d.add(this.createHeading("Récapitulatif d’inscription à la formation « " + data.courseTitle + " »", StandardRoles.H1));
+
     // Adding a paragraph to the document
     Paragraph p;
     p = new Paragraph(dest);
