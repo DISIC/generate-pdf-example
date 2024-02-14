@@ -48,6 +48,7 @@ public class PdfCreatorHtml extends PdfCreator {
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__HTML_" + suffix + "." + DEST_EXTENSTION;
 
     PdfDocument pdfDoc = this.createTaggedPDFDocument(dest);
+    pdfDoc.getCatalog().setPageMode(PdfName.UseOutlines);
 
     // a11y: embed font
     ConverterProperties props = new ConverterProperties();
