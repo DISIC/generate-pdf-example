@@ -72,12 +72,6 @@ public class PdfCreatorManual extends PdfCreator {
     return d;
   }
 
-  protected void addKeyValueParagraph(Document d, Paragraph p, String key, String val) {
-    p = new Paragraph(new Text(key + " :\n"));
-    p.add(new Text(val).setBold());
-    d.add(p);
-  }
-
   public PdfOutline createOutline(PdfOutline outline, PdfDocument pdf, String title, String name) {
     if (outline == null) {
       outline = pdf.getOutlines(false);

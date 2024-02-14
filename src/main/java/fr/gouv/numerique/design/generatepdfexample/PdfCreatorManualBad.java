@@ -89,4 +89,10 @@ public class PdfCreatorManualBad extends PdfCreatorManual {
     // Close document
     d.close();
   }
+
+  protected void addKeyValueParagraph(Document d, Paragraph p, String key, String val) {
+    p = new Paragraph(new Text(key + " :\n"));
+    p.add(new Text(val).setBold());
+    d.add(p);
+  }
 }
