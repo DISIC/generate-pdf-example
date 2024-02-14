@@ -67,7 +67,7 @@ public class PdfCreatorManual extends PdfCreator {
     d.setFont(this.fontRegular);
 
     PdfDocumentInfo documentInfo = pdfDoc.getDocumentInfo();
-    documentInfo.setTitle("Récapitulatif d’inscription à la formation " + data.courseTitle);
+    documentInfo.setTitle("Récapitulatif d’inscription à la formation \"" + data.courseTitle + "\"");
 
     return d;
   }
