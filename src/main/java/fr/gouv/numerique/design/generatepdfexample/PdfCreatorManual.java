@@ -7,8 +7,10 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.font.PdfFontFactory.EmbeddingStrategy;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfDocumentInfo;
+import com.itextpdf.kernel.pdf.PdfOutline;
+import com.itextpdf.kernel.pdf.PdfString;
 import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.navigation.PdfDestination;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
@@ -74,5 +76,17 @@ public class PdfCreatorManual extends PdfCreator {
     p = new Paragraph(new Text(key + " :\n"));
     p.add(new Text(val).setBold());
     d.add(p);
+  }
+
+  public PdfOutline createOutline(PdfOutline outline, PdfDocument pdf, String title, String name) {
+    if (outline == null) {
+      outline = pdf.getOutlines(false);
+      outline = outline.addOutline(title);
+      outline.addDestination(PdfDestination.makeDestination(new PdfString(name)));
+      return outline;
+    }
+    PdfOutline kid = outline.addOutline(title);
+    kid.addDestination(PdfDestination.makeDestination(new PdfString(name)));
+    return outline;
   }
 }
