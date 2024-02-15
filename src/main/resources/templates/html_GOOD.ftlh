@@ -16,10 +16,13 @@
         height="49.3"
         alt="DesignGouv"
       />
+    </header>
+    <main class="stack-xl">
       <h1>
         Récapitulatif d’inscription à la formation<br />
         <strong>${testFormdata.courseTitle}</strong>
       </h1>
+      <h2>Informations générales</h2>
       <p class="subtitle">
         Le
         <time datetime="${testFormdata.courseDate}"
@@ -34,8 +37,6 @@
           >${testFormdata.formattedCourseEndTime}</time
         >
       </p>
-    </header>
-    <main class="stack-xl">
       <p class="sent-date">
         Formulaire d’inscription envoyé :
         <time datetime="${testFormdata.registrationDateTime}"
@@ -43,6 +44,7 @@
           ${testFormdata.formattedRegistrationTime}</time
         >.
       </p>
+      <h2>Informations détaillées</h2>
       <dl class="stack">
         <div>
           <dt>Prénom</dt>

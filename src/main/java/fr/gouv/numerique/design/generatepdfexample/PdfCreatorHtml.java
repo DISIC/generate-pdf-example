@@ -2,6 +2,7 @@ package fr.gouv.numerique.design.generatepdfexample;
 
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
+import com.itextpdf.html2pdf.attach.impl.OutlineHandler;
 import com.itextpdf.html2pdf.resolver.font.DefaultFontProvider;
 import com.itextpdf.io.font.*;
 import com.itextpdf.kernel.pdf.*;
@@ -48,7 +49,6 @@ public class PdfCreatorHtml extends PdfCreator {
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__HTML_" + suffix + "." + DEST_EXTENSTION;
 
     PdfDocument pdfDoc = this.createTaggedPDFDocument(dest);
-    pdfDoc.getCatalog().setPageMode(PdfName.UseOutlines);
 
     // a11y: embed font
     ConverterProperties props = new ConverterProperties();
@@ -63,6 +63,8 @@ public class PdfCreatorHtml extends PdfCreator {
     props.setFontProvider(fontProvider);
 
     props.setBaseUri("./src/main/resources/");
+
+    props.setOutlineHandler(OutlineHandler.createStandardHandler());
 
     HtmlConverter.convertToPdf(htmlStr, pdfDoc, props);
   }
