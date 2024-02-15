@@ -25,6 +25,9 @@ import java.io.IOException;
  */
 public class PdfCreatorManualGood extends PdfCreatorManual {
 
+  protected PdfOutline outline = null;
+  protected int outlineCounter = 0;
+
   public PdfCreatorManualGood() throws IOException {
     super();
   }
@@ -33,6 +36,9 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     // Ex: "./dist/formation_creer_un_pdf_accessible_recapitulatif__MANUAL_GOOD.pdf"
     String dest = DEST_PATH + DEST_BASE_FILE_NAME + "__MANUAL_GOOD." + DEST_EXTENSTION;
     Document d = super.createDocument(dest, data);
+
+    PdfDocument pdf = d.getPdfDocument();
+    pdf.getCatalog().setPageMode(PdfName.UseOutlines);
 
     // Creating an ImageData object
     String imgPath = "src/main/resources/img/logo-designgouv.png";
@@ -48,12 +54,22 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     // Adding image to the document
     d.add(image);
 
-    d.add(this.createHeading("Récapitulatif d’inscription à la formation « " + data.courseTitle + " »", StandardRoles.H1));
+    // H1 Main heading
+    d.add(this.createHeading(pdf, "Récapitulatif d’inscription à la formation « " + data.courseTitle + " »", StandardRoles.H1));
+
+    // H2 "general info"
+    d.add(this.createHeading(pdf, "Informations générales", StandardRoles.H2));
 
     // Adding a paragraph to the document
     Paragraph p;
-    p = new Paragraph(dest);
+    p =
+      new Paragraph(
+        "Le " + data.getFormattedCourseStartDate() + " de " + data.getFormattedCourseStartTime() + " à " + data.getFormattedCourseEndTime()
+      );
     d.add(p);
+
+    // H2 "detailed info"
+    d.add(this.createHeading(pdf, "Informations détaillées", StandardRoles.H2, 1));
 
     // Definition list
     List list = new List();
@@ -77,37 +93,55 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     d.close();
   }
 
-  public Paragraph createHeading(String title, String hLevel) {
+  protected Paragraph createHeading(PdfDocument pdf, String title, String hLevel) {
+    return this.createHeading(pdf, title, hLevel, 0);
+  }
+
+  protected Paragraph createHeading(PdfDocument pdf, String title, String hLevel, int nAncestorsUp) {
     Paragraph p = new Paragraph(title);
     p.setFont(this.fontBold).setFontSize(20f).setMarginTop(20f).setMarginBottom(10f).setMultipliedLeading(1);
+    // a11y: heading level
     p.getAccessibilityProperties().setRole(hLevel);
+
+    String name = String.format("title%02d", this.outlineCounter++);
+    // a11y: outline (= bookmark)
+    this.createOutline(pdf, title, name, nAncestorsUp);
+    p.setDestination(name);
     return p;
   }
 
-  public PdfOutline createOutline(PdfOutline outline, PdfDocument pdf, String title, String name) {
-    if (outline == null) {
-      outline = pdf.getOutlines(false);
-      outline = outline.addOutline(title);
-      outline.addDestination(PdfDestination.makeDestination(new PdfString(name)));
-      return outline;
+  protected void createOutline(PdfDocument pdf, String title, String name, int nAncestorsUp) {
+    PdfOutline lastOutline = this.outline;
+    PdfOutline parentOutline = lastOutline;
+    if (lastOutline == null) {
+      parentOutline = lastOutline = pdf.getOutlines(false);
+    } else {
+      int i = 0;
+      while ((i++ < nAncestorsUp) || parentOutline == null) {
+        parentOutline = parentOutline.getParent();
+      }
     }
-    PdfOutline kid = outline.addOutline(title);
-    kid.addDestination(PdfDestination.makeDestination(new PdfString(name)));
-    return outline;
+    lastOutline = parentOutline.addOutline(title);
+    // a11y: link outline to heading
+    lastOutline.addDestination(PdfDestination.makeDestination(new PdfString(name)));
+    this.outline = lastOutline;
   }
 
   protected void addKeyValueListItem(List list, String key, String val) {
     ListItem li = new ListItem();
 
+    // a11y: cancel default role
     // Remove default role "LBODY" from LI element (we want 2 children: LBL + LBODY)
     // see https://kb.itextpdf.com/itext/release-itext-core-7-2-4
     li.setNeutralRole();
 
     Paragraph keyP = new Paragraph(key);
+    // a11y: role LBL
     keyP.getAccessibilityProperties().setRole(StandardRoles.LBL);
     keyP.add(new Text(" : "));
 
     Paragraph valP = new Paragraph(val);
+    // a11y: role LBODY
     valP.getAccessibilityProperties().setRole(StandardRoles.LBODY);
     valP.setFont(this.fontBold);
 
