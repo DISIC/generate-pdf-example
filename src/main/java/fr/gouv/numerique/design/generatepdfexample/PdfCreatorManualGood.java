@@ -67,6 +67,11 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
         "Le " + data.getFormattedCourseStartDate() + " de " + data.getFormattedCourseStartTime() + " à " + data.getFormattedCourseEndTime()
       );
     d.add(p);
+    p =
+      new Paragraph(
+        "Formulaire d’inscription envoyé : le " + data.getFormattedRegistrationDate() + " à " + data.getFormattedRegistrationTime() + "."
+      );
+    d.add(p);
 
     // H2 "detailed info"
     d.add(this.createHeading(pdf, "Informations détaillées", StandardRoles.H2, 1));
