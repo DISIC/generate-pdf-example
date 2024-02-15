@@ -163,18 +163,23 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     // see https://kb.itextpdf.com/itext/release-itext-core-7-2-4
     li.setNeutralRole();
 
-    Paragraph keyP = new Paragraph(key);
+    Paragraph p = new Paragraph();
+    // a11y: cancel default role
+    p.setNeutralRole();
+
+    Text keyT = new Text(key);
     // a11y: role LBL
-    keyP.getAccessibilityProperties().setRole(StandardRoles.LBL);
-    keyP.add(new Text(" : "));
+    keyT.getAccessibilityProperties().setRole(StandardRoles.LBL);
 
-    Paragraph valP = new Paragraph(val);
+    Text valT = new Text(" : " + val);
     // a11y: role LBODY
-    valP.getAccessibilityProperties().setRole(StandardRoles.LBODY);
-    valP.setFont(this.fontBold);
+    valT.getAccessibilityProperties().setRole(StandardRoles.LBODY);
+    valT.setFont(this.fontBold);
 
-    li.add(keyP);
-    li.add(valP);
+    p.add(keyT);
+    p.add(valT);
+
+    li.add(p);
 
     list.add(li);
   }
