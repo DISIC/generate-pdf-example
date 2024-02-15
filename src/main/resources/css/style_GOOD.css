@@ -57,3 +57,8 @@
 body {
   font-family: Marianne;
 }
+
+dt,
+dd {
+  display: inline;
+}
