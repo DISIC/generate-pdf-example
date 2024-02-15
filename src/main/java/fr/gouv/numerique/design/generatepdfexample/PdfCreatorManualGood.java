@@ -99,7 +99,30 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
 
   protected Paragraph createHeading(PdfDocument pdf, String title, String hLevel, int nAncestorsUp) {
     Paragraph p = new Paragraph(title);
-    p.setFont(this.fontBold).setFontSize(20f).setMarginTop(20f).setMarginBottom(10f).setMultipliedLeading(1);
+
+    float fontSize;
+    switch (hLevel) {
+      case StandardRoles.H1:
+        fontSize = 26f;
+        break;
+      case StandardRoles.H2:
+        fontSize = 22f;
+        break;
+      case StandardRoles.H3:
+        fontSize = 20f;
+        break;
+      case StandardRoles.H4:
+        fontSize = 18f;
+        break;
+      case StandardRoles.H5:
+        fontSize = 16f;
+        break;
+      case StandardRoles.H6:
+      default:
+        fontSize = 14f;
+        break;
+    }
+    p.setFont(this.fontBold).setFontSize(fontSize).setMarginTop(20f).setMarginBottom(10f).setMultipliedLeading(1);
     // a11y: heading level
     p.getAccessibilityProperties().setRole(hLevel);
 
