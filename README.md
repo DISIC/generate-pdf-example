@@ -21,3 +21,9 @@ mvn install
 ```bash
 mvn compile exec:java
 ```
+
+## 📄 The generated _good_ documents
+
+[formation_creer_un_pdf_accessible_recapitulatif__HTML_GOOD.pdf](https://github.com/DISIC/generate-pdf-example/files/14592280/formation_creer_un_pdf_accessible_recapitulatif__HTML_GOOD.pdf)
+
+[formation_creer_un_pdf_accessible_recapitulatif__MANUAL_GOOD.pdf](https://github.com/DISIC/generate-pdf-example/files/14592285/formation_creer_un_pdf_accessible_recapitulatif__MANUAL_GOOD.pdf)
