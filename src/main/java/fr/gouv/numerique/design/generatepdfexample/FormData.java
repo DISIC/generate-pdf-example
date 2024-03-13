@@ -198,7 +198,7 @@ public class FormData {
    * @return String Formatted time (ex: "15 h 53")
    */
   private String getFormattedTime(Date date) {
-    SimpleDateFormat tf = new SimpleDateFormat("H 'h' mm");
+    SimpleDateFormat tf = new SimpleDateFormat("H 'h' mm");
     return tf.format(date);
   }
 
