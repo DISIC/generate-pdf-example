@@ -29,7 +29,7 @@
     <p>Nom :<br /><b>${testFormdata.lastName}</b></p>
     <p>E-mail :<br /><b>${testFormdata.email}</b></p>
     <p>Ville :<br /><b>${testFormdata.city}</b></p>
-    <p>Status :<br /><b>${testFormdata.function}</b></p>
+    <p>Statut :<br /><b>${testFormdata.function}</b></p>
     <p>Organisme :<br /><b>${testFormdata.organisation}</b></p>
     <p>
       Démarche de l'Observatoire :<br /><b

@@ -68,7 +68,7 @@ public class PdfCreatorManualBad extends PdfCreatorManual {
     this.addKeyValueParagraph(d, p, "Nom", data.lastName);
     this.addKeyValueParagraph(d, p, "E-mail", data.email);
     this.addKeyValueParagraph(d, p, "Ville", data.city);
-    this.addKeyValueParagraph(d, p, "Status", data.status);
+    this.addKeyValueParagraph(d, p, "Statut", data.status);
     this.addKeyValueParagraph(d, p, "Organisme", data.organisation);
     if (!data.observatoryProcedure.isEmpty()) {
       this.addKeyValueParagraph(d, p, "Démarche de l'Observatoire", data.observatoryProcedure);

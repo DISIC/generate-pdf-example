@@ -63,7 +63,7 @@
           <dd>${testFormdata.city}</dd>
         </div>
         <div>
-          <dt>Status</dt>
+          <dt>Statut</dt>
           <dd>${testFormdata.status}</dd>
         </div>
         <div>

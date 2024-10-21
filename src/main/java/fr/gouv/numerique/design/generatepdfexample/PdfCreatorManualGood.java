@@ -84,7 +84,7 @@ public class PdfCreatorManualGood extends PdfCreatorManual {
     this.addKeyValueListItem(list, "Nom", data.lastName);
     this.addKeyValueListItem(list, "E-mail", data.email);
     this.addKeyValueListItem(list, "Ville", data.city);
-    this.addKeyValueListItem(list, "Status", data.status);
+    this.addKeyValueListItem(list, "Statut", data.status);
     this.addKeyValueListItem(list, "Organisme", data.organisation);
     if (!data.observatoryProcedure.isEmpty()) {
       this.addKeyValueListItem(list, "Démarche de l'Observatoire", data.observatoryProcedure);
